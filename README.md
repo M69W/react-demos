@@ -7,6 +7,7 @@ These demos are purposely written in a simple and clear style. You will find no 
 - [Flux Demo](https://github.com/ruanyf/extremely-simple-flux-demo)
 - [Webpack Demos](https://github.com/ruanyf/webpack-demos)
 - [React Router Tutorial](https://github.com/reactjs/react-router-tutorial)
+- [CSS Modules Demos](https://github.com/ruanyf/css-modules-demos)
 - [React Testing Demo](https://github.com/ruanyf/react-testing-demo)
 - [A boilerplate for React-Babel-Webpack project](https://github.com/ruanyf/react-babel-webpack-boilerplate)
 
@@ -72,7 +73,7 @@ ReactDOM.render(
 );
 ```
 
-Attention, you have to use `<script type="text/babel">` to indicate JSX codes, and include `browser.min.js`, which is a [browser version](https://babeljs.io/docs/usage/browser/) of Babel and could be get inside a [babel-core](https://www.npmjs.com/package/babel-core) npm release, to actually perform the transformation in the browser.
+Attention, you have to use `<script type="text/babel">` to indicate JSX codes, and include `browser.min.js`, which is a [browser version](https://babeljs.io/docs/usage/browser/) of Babel and could be get inside a [babel-core@5](https://www.npmjs.com/package/babel-core) npm release, to actually perform the transformation in the browser.
 
 Before v0.14, React use `JSTransform.js` to translate `<script type="text/jsx">`. It has been deprecated ([more info](https://facebook.github.io/react/blog/2015/06/12/deprecating-jstransform-and-react-tools.html)).
 
@@ -80,7 +81,7 @@ Before v0.14, React use `JSTransform.js` to translate `<script type="text/jsx">`
 
 [demo](http://ruanyf.github.io/react-demos/demo02/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo02/index.html)
 
-You could also use JavaScript in JSX. It takes angle brackets (&lt;) as the beginning of HTML syntax, and curly brackets ({) as the beginning of JavaScript syntax.
+You could also use JavaScript in JSX. It takes angle brackets (&lt;) as the beginning of HTML syntax, and curly brackets (`{`) as the beginning of JavaScript syntax.
 
 ```js
 var names = ['Alice', 'Emily', 'Kate'];
@@ -101,7 +102,7 @@ ReactDOM.render(
 
 [demo](http://ruanyf.github.io/react-demos/demo03/) / [source](https://github.com/ruanyf/react-demos/blob/master/demo03/index.html)
 
-If a JavaScript variable is array, JSX will implicitly concat all members of the array.
+If a JavaScript variable is an array, JSX will implicitly concat all members of the array.
 
 ```js
 var arr = [
@@ -135,7 +136,7 @@ ReactDOM.render(
 
 Components would have attributes, and you can use `this.props.[attribute]` to access them, just like `this.props.name` of `<HelloMessage name="John" />` is John.
 
-Please remember the first letter of the component's name must be capitalized, otherwise React will throw an error. For instance, `HelloMessage` as a component's name is OK, but `helloMessage` is not allowed. And a React component should only one top child node.
+Please remember the first letter of the component's name must be capitalized, otherwise React will throw an error. For instance, `HelloMessage` as a component's name is OK, but `helloMessage` is not allowed. And a React component should only have one top child node.
 
 ```javascript
 // wrong
@@ -186,11 +187,11 @@ ReactDOM.render(
     <span>hello</span>
     <span>world</span>
   </NotesList>,
-  document.body
+  document.getElementById('example')
 );
 ```
 
-Please be minded that the value of `this.props.children` has three possibilities. If the component has no children node, the value is `undefined`; If single children node, an object; If multiple children nodes, an array. You should be careful to handle it.
+Please be mindful that the value of `this.props.children` has three possibilities. If the component has no children node, the value is `undefined`; If single children node, an object; If multiple children nodes, an array. You should be careful to handle it.
 
 React gave us an utility [`React.Children`](https://facebook.github.io/react/docs/top-level-api.html#react.children) for dealing with the `this.props.children`'s opaque data structure. You could use `React.Children.map` to iterate `this.props.children` without worring its data type being `undefined` or `object`. Check [official document](https://facebook.github.io/react/docs/top-level-api.html#react.children) for more methods `React.Children` offers.
 
@@ -216,7 +217,7 @@ var MyTitle = React.createClass({
 });
 ```
 
-The above component of `Mytitle` has a props of `title`. PropTypes tells React that the title is required and its value should be string.
+The above component of `MyTitle` has a props of `title`. PropTypes tells React that the title is required and its value should be a string.
 
 Now we give `Title` a number value.
 
@@ -225,11 +226,11 @@ var data = 123;
 
 ReactDOM.render(
   <MyTitle title={data} />,
-  document.body
+  document.getElementById('example')
 );
 ```
 
-It means the props doesn't pass the validation, and the console will show you a error message.
+It means the props doesn't pass the validation, and the console will show you an error message.
 
 ```bash
 Warning: Failed propType: Invalid prop `title` of type `number` supplied to `MyTitle`, expected `string`.
@@ -254,7 +255,7 @@ var MyTitle = React.createClass({
 
 ReactDOM.render(
   <MyTitle />,
-  document.body
+  document.getElementById('example')
 );
 ```
 
@@ -285,7 +286,7 @@ ReactDOM.render(
 );
 ```
 
-The desired DOM node should have a `ref` attribute, and `this.refs.[refName]` would return the corresponding DOM node. Please be minded that you could do that only after this component has been mounted into the DOM, otherwise you get `null`.
+The desired DOM node should have a `ref` attribute, and `this.refs.[refName]` would return the corresponding DOM node. Please be mindful that you could do that only after this component has been mounted into the DOM, otherwise you get `null`.
 
 ## Demo08: this.state
 
@@ -346,7 +347,7 @@ var Input = React.createClass({
   }
 });
 
-ReactDOM.render(<Input/>, document.body);
+ReactDOM.render(<Input/>, document.getElementById('example'));
 ```
 
 More information on [official document](http://facebook.github.io/react/docs/forms.html).
@@ -389,7 +390,7 @@ var Hello = React.createClass({
 
 ReactDOM.render(
   <Hello name="world"/>,
-  document.body
+  document.getElementById('example')
 );
 ```
 
@@ -442,7 +443,7 @@ var UserGist = React.createClass({
 
 ReactDOM.render(
   <UserGist source="https://api.github.com/users/octocat/gists" />,
-  document.body
+  document.getElementById('example')
 );
 ```
 
@@ -459,7 +460,7 @@ ReactDOM.render(
   <RepoList
     promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')}
   />,
-  document.body
+  document.getElementById('example')
 );
 ```
 
@@ -566,7 +567,7 @@ Put the compiled JS files into HTML.
 - [React (Virtual) DOM Terminology](http://facebook.github.io/react/docs/glossary.html), by Sebastian Markbåge
 - [The React Quick Start Guide](http://www.jackcallister.com/2015/01/05/the-react-quick-start-guide.html), by Jack Callister
 - [Learning React.js: Getting Started and Concepts](https://scotch.io/tutorials/learning-react-getting-started-and-concepts), by Ken Wheeler
-- [Getting started with React](http://ryanclark.me/getting-started-with-react/), by Ryan Clark
+- [Getting started with React](http://ryanclark.me/getting-started-with-react), by Ryan Clark
 - [React JS Tutorial and Guide to the Gotchas](https://zapier.com/engineering/react-js-tutorial-guide-gotchas/), by Justin Deal
 - [React Primer](https://github.com/BinaryMuse/react-primer), by Binary Muse
 - [jQuery versus React.js thinking](http://blog.zigomir.com/react.js/jquery/2015/01/11/jquery-versus-react-thinking.html), by zigomir
